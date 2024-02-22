@@ -1,0 +1,112 @@
+_format_version: '3.0'
+_transform: false
+parameters:
+- value: c42b04ea-7e43-4d2e-b088-c668445b3cf4
+  created_at: 1708579595
+  key: cluster_id
+services:
+- write_timeout: 60000
+  connect_timeout: 60000
+  host: 127.0.0.1
+  read_timeout: 60000
+  enabled: true
+  tags: ~
+  ca_certificates: ~
+  client_certificate: ~
+  protocol: http
+  updated_at: 1708590461
+  id: 54f5b7d2-d042-4950-80d3-08bb9863be0a
+  retries: 5
+  tls_verify: ~
+  created_at: 1708518790
+  path: ~
+  tls_verify_depth: ~
+  port: 15555
+  name: ~
+- write_timeout: 60000
+  connect_timeout: 60000
+  host: httpbin.org
+  read_timeout: 60000
+  enabled: true
+  tags: ~
+  ca_certificates: ~
+  client_certificate: ~
+  protocol: http
+  updated_at: 1708590461
+  id: 5f027ccd-36f3-4236-ac98-983a3c843b32
+  retries: 5
+  tls_verify: ~
+  created_at: 1708579808
+  path: /anything
+  tls_verify_depth: ~
+  port: 80
+  name: httpbin
+routes:
+- https_redirect_status_code: 426
+  created_at: 1708518790
+  strip_path: true
+  snis: ~
+  request_buffering: true
+  id: 211ed29a-8405-4f7b-9a5a-af5423d6647a
+  response_buffering: true
+  sources: ~
+  preserve_host: false
+  tags: ~
+  paths: ~
+  service: 54f5b7d2-d042-4950-80d3-08bb9863be0a
+  destinations: ~
+  hosts:
+  - test1.com
+  name: ~
+  path_handling: v0
+  methods: ~
+  headers: ~
+  updated_at: 1708590461
+  regex_priority: 0
+  protocols:
+  - http
+  - https
+- https_redirect_status_code: 426
+  created_at: 1708579837
+  strip_path: true
+  snis: ~
+  request_buffering: true
+  id: c003fe1a-af53-45ce-86f2-1b3b6ff44d3a
+  response_buffering: true
+  sources: ~
+  preserve_host: false
+  tags: ~
+  paths:
+  - /
+  service: 5f027ccd-36f3-4236-ac98-983a3c843b32
+  destinations: ~
+  hosts: ~
+  name: ~
+  path_handling: v0
+  methods: ~
+  headers: ~
+  updated_at: 1708590461
+  regex_priority: 0
+  protocols:
+  - http
+  - https
+plugins:
+- config:
+    auth_id: Auth-Id
+    auth_header: Mini-Auth
+    auth_url: http://httpbin.org/status/403
+  enabled: true
+  instance_name: ~
+  tags: ~
+  service: ~
+  created_at: 1708579980
+  name: kong-builders
+  updated_at: 1708590461
+  consumer: ~
+  route: ~
+  id: 87a9ebcb-76fb-42d2-b697-465e4346dadf
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https

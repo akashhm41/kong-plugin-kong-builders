@@ -1,4 +1,4 @@
-local PLUGIN_NAME = "myplugin"
+local PLUGIN_NAME = "kong-builders"
 
 
 -- helper function to validate data against a schema
@@ -15,31 +15,12 @@ end
 describe(PLUGIN_NAME .. ": (schema)", function()
 
 
-  it("accepts distinct request_header and response_header", function()
+  it("auth_header is required", function()
     local ok, err = validate({
-        request_header = "My-Request-Header",
-        response_header = "Your-Response",
-      })
-    assert.is_nil(err)
-    assert.is_truthy(ok)
-  end)
-
-
-  it("does not accept identical request_header and response_header", function()
-    local ok, err = validate({
-        request_header = "they-are-the-same",
-        response_header = "they-are-the-same",
-      })
-
-    assert.is_same({
-      ["config"] = {
-        ["@entity"] = {
-          [1] = "values of these fields must be distinct: 'request_header', 'response_header'"
-        }
-      }
-    }, err)
+      auth_header = ngx.null,
+    })
     assert.is_falsy(ok)
+    assert.is_table(err)
+    assert.equals('required field missing', err.config.auth_header)
   end)
-
-
 end)
